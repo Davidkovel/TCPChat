@@ -1,11 +1,11 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0-windows7.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0-windows7.0": []
   },
   "packageFolders": {
     "C:\\Users\\zaole\\.nuget\\packages\\": {}
@@ -13,24 +13,24 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\TCPServer\\TCPServer.csproj",
-      "projectName": "TCPServer",
-      "projectPath": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\TCPServer\\TCPServer.csproj",
+      "projectUniqueName": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\WPF_TCP_CLient2\\WPF_TCP_CLient2.csproj",
+      "projectName": "WPF_TCP_CLient2",
+      "projectPath": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\WPF_TCP_CLient2\\WPF_TCP_CLient2.csproj",
       "packagesPath": "C:\\Users\\zaole\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\TCPServer\\obj\\",
+      "outputPath": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\WPF_TCP_CLient2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\zaole\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net8.0"
+        "net8.0-windows"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
           "projectReferences": {}
         }
       },
@@ -47,8 +47,8 @@
       "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
-      "net8.0": {
-        "targetAlias": "net8.0",
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows",
         "imports": [
           "net461",
           "net462",
@@ -63,6 +63,9 @@
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
