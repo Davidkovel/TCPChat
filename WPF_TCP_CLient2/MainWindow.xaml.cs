@@ -1,100 +1,83 @@
 ﻿using System;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-
-namespace WPF_TCP_CLient2;
-
-public partial class MainWindow : Window
-{
-    private TcpListener _tcpListener;
-    private TcpClient _connectedClient;
-
-    public MainWindow()
+    using System.Net.Sockets;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    
+    namespace WPF_TCP_Client;
+    
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
-        StartServerAsync();
-    }
-
-    private async void StartServerAsync()
-    {
-        _tcpListener = new TcpListener(IPAddress.Any, 8888);// Port number can be changed
-        try
+        private TcpClient _tcpClient;
+        private NetworkStream _networkStream;
+    
+        public MainWindow()
         {
-            _tcpListener.Start();
-            ChatMessages.Items.Add("Server started. Waiting for connections...");
-
-            while (true)
+            InitializeComponent();
+            ConnectToServerAsync();
+        }
+    
+        private async void ConnectToServerAsync()
+        {
+            try
             {
-                _connectedClient = await _tcpListener.AcceptTcpClientAsync();
-                ChatMessages.Items.Add($"Incoming connection: {_connectedClient.Client.RemoteEndPoint}");
-                _ = HandleClientAsync(_connectedClient);
+                _tcpClient = new TcpClient();
+                await _tcpClient.ConnectAsync("127.0.0.1", 8888); // Connect to the server
+                _networkStream = _tcpClient.GetStream();
+                ChatMessages.Items.Add("Connected to the server.");
+    
+                _ = ReceiveMessagesAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error connecting to server: {ex.Message}");
             }
         }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Server error: {ex.Message}");
-        }
-    }
-
-    private async Task HandleClientAsync(TcpClient tcpClient)
-    {
-        using (tcpClient)
+    
+        private async Task ReceiveMessagesAsync()
         {
             var buffer = new byte[1024];
-            var stream = tcpClient.GetStream();
-
             try
             {
                 while (true)
                 {
-                    int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
+                    int bytesRead = await _networkStream.ReadAsync(buffer, 0, buffer.Length);
                     if (bytesRead == 0) break;
-
+    
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    await Dispatcher.InvokeAsync(() => ChatMessages.Items.Add($"Client: {message}"));
+                    await Dispatcher.InvokeAsync(() => ChatMessages.Items.Add(message));
                 }
             }
             catch (Exception ex)
             {
-                await Dispatcher.InvokeAsync(() => ChatMessages.Items.Add($"Client error: {ex.Message}"));
+                await Dispatcher.InvokeAsync(() => ChatMessages.Items.Add($"Error: {ex.Message}"));
             }
         }
-    }
-
-    private async void SendMessage_Click(object sender, RoutedEventArgs e)
-    {
-        if (_connectedClient == null || !_connectedClient.Connected)
+    
+        private async void SendMessage_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("No client connected.");
-            return;
-        }
-
-        try
-        {
-            string message = MessageInput.Text;
-            if (!string.IsNullOrWhiteSpace(message))
+            try
             {
-                var stream = _connectedClient.GetStream();
-                byte[] buffer = Encoding.UTF8.GetBytes(message);
-                await stream.WriteAsync(buffer, 0, buffer.Length);
-
-                ChatMessages.Items.Add($"Server: {message}");
-                MessageInput.Clear();
+                string message = MessageInput.Text;
+                if (!string.IsNullOrWhiteSpace(message))
+                {
+                    byte[] buffer = Encoding.UTF8.GetBytes(message);
+                    await _networkStream.WriteAsync(buffer, 0, buffer.Length);
+    
+                    ChatMessages.Items.Add($"You: {message}");
+                    MessageInput.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error sending message: {ex.Message}");
             }
         }
-        catch (Exception ex)
+    
+        protected override void OnClosed(EventArgs e)
         {
-            MessageBox.Show($"Error sending message: {ex.Message}");
+            base.OnClosed(e);
+            _networkStream?.Close();
+            _tcpClient?.Close();
         }
     }
-
-    protected override void OnClosed(EventArgs e)
-    {
-        base.OnClosed(e);
-        _tcpListener?.Stop();
-        _connectedClient?.Close();
-    }
-}
