@@ -8,19 +8,19 @@
     "net8.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\David\\.nuget\\packages\\": {}
+    "C:\\Users\\zaole\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\David\\RiderProjects\\TCPChat\\WPF_TCP_CLIENT\\WPF_TCP_CLIENT.csproj",
+      "projectUniqueName": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\WPF_TCP_CLIENT\\WPF_TCP_CLIENT.csproj",
       "projectName": "WPF_TCP_CLIENT",
-      "projectPath": "C:\\Users\\David\\RiderProjects\\TCPChat\\WPF_TCP_CLIENT\\WPF_TCP_CLIENT.csproj",
-      "packagesPath": "C:\\Users\\David\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\David\\RiderProjects\\TCPChat\\WPF_TCP_CLIENT\\obj\\",
+      "projectPath": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\WPF_TCP_CLIENT\\WPF_TCP_CLIENT.csproj",
+      "packagesPath": "C:\\Users\\zaole\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zaole\\RiderProjects\\TCPChat\\WPF_TCP_CLIENT\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\David\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\zaole\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0-windows"
@@ -43,7 +43,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -67,7 +68,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\David\\.dotnet\\sdk\\8.0.406/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

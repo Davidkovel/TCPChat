@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("WPF_TCP_CLIENT")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("WPF_TCP_CLient2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+685e92325fb6cb0ac12577a5bbd55ecdd508133f")]
-[assembly: System.Reflection.AssemblyProductAttribute("WPF_TCP_CLIENT")]
-[assembly: System.Reflection.AssemblyTitleAttribute("WPF_TCP_CLIENT")]
+[assembly: System.Reflection.AssemblyProductAttribute("WPF_TCP_CLient2")]
+[assembly: System.Reflection.AssemblyTitleAttribute("WPF_TCP_CLient2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
